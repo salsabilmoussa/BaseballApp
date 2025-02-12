@@ -28,14 +28,7 @@ class CardManager extends AbstractManager
 
     public function addCard(Card $newCard): array
     {
-        $card = new Card();
-        $card->setName($newCard->getName());
-        $card->setPlayer($newCard->getPlayer());
-        $card->setTeam($newCard->getTeam());
-        $card->setYear($newCard->getYear());
-        $card->setImageUrl($newCard->getImageUrl());
-        $this->em->persist($card);
-        $this->em->flush();
+        $this->save($newCard);
         $message = new BaseballCardMessage('card created');
         $this->messageBus->dispatch($message);
         return $this->findAll();
@@ -64,8 +57,7 @@ class CardManager extends AbstractManager
         if ($data->getImageUrl() !== null) {
             $card->setImageUrl($data->getImageUrl());
         }
-        $this->em->persist($card);
-        $this->em->flush();
+        $this->save($card);
         $message = new BaseballCardMessage('card updated');
         $this->messageBus->dispatch($message);
     }
@@ -75,8 +67,7 @@ class CardManager extends AbstractManager
     public function deleteCard(string $cardId): void
     {
         $card = $this->getCardRepository()->find($cardId);
-        $this->em->remove($card);
-        $this->em->flush();
+        $this->delete($card);
         $message = new BaseballCardMessage('card deleted');
         $this->messageBus->dispatch($message);
     }

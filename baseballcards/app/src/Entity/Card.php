@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation as Serializer;
 
 #[ORM\Entity(repositoryClass: CardRepository::class)]
-class Card
+class Card implements EntityInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
