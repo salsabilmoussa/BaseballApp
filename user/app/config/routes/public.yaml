@@ -1,0 +1,13 @@
+api_public_register:
+  controller: App\Controller\AuthController::register
+  path: /register
+  methods: POST
+
+api_login_check:
+  path: api/login_check
+  methods: POST
+
+api_hello:
+  controller: App\Controller\AuthController::hello
+  path: api/hello
+  methods: GET

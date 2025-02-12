@@ -1,0 +1,24 @@
+api_public_getCards:
+  controller: App\Controller\CardController::getCards
+  path: /cards
+  methods: GET
+
+api_public_addCard:
+  controller: App\Controller\CardController::addCard
+  path: card/new
+  methods: POST
+
+api_public_showCard:
+  controller: App\Controller\CardController::showCard
+  path: card/{id}
+  methods: GET
+
+api_public_editCard:
+  controller: App\Controller\CardController::editCard
+  path: card/{id}/edit
+  methods: PUT
+
+api_public_deleteCard:
+  controller: App\Controller\CardController::deleteCard
+  path: card/{id}
+  methods: DELETE

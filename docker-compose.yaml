@@ -1,0 +1,28 @@
+services:
+  baseball_cards:
+    build: ./baseballcards/app
+    container_name: baseballcards
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./baseballcards/app/:/app
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - app_network
+
+  user:
+    build: ./user/app
+    container_name: user
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./user/app/:/app
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
