@@ -6,6 +6,9 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints\Email;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -16,21 +19,24 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Serializer\Groups(['API.GET'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    private ?string $email = null;
+    #[Serializer\Groups(['API.GET', 'API.POST', 'API.PATCH', 'API.PUT'])]
+    #[Email]
+    #[NotBlank]
+    private string $email;
 
-    /**
-     * @var list<string> The user roles
-     */
+
     #[ORM\Column]
+    #[Serializer\Groups(['API.GET', 'API.POST', 'API.PATCH', 'API.PUT'])]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
+
     #[ORM\Column]
+    #[Serializer\Groups(['API.GET', 'API.POST', 'API.PATCH', 'API.PUT'])]
+    #[NotBlank]
     private ?string $password = null;
 
     public function getId(): ?int
@@ -38,12 +44,12 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): User
     {
         $this->email = $email;
 
@@ -77,7 +83,7 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
     /**
      * @param list<string> $roles
      */
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): User
     {
         $this->roles = $roles;
 
@@ -92,7 +98,7 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(?string $password): User
     {
         $this->password = $password;
 

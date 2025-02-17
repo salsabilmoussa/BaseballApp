@@ -33,12 +33,4 @@ final class AuthController extends AbstractController
         );
     }
 
-    public function hello(): JsonResponse
-    {
-        return $this->json(
-            "hello",
-            Response::HTTP_OK,
-            []
-        );
-    }
 }
