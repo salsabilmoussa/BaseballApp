@@ -71,7 +71,7 @@ class Card implements EntityInterface
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name): Card
     {
         $this->name = $name;
 
@@ -83,7 +83,7 @@ class Card implements EntityInterface
         return $this->player;
     }
 
-    public function setPlayer(string $player): static
+    public function setPlayer(string $player): Card
     {
         $this->player = $player;
 
@@ -95,7 +95,7 @@ class Card implements EntityInterface
         return $this->team;
     }
 
-    public function setTeam(string $team): static
+    public function setTeam(string $team): Card
     {
         $this->team = $team;
 
@@ -107,7 +107,7 @@ class Card implements EntityInterface
         return $this->year;
     }
 
-    public function setYear(int $year): static
+    public function setYear(int $year): Card
     {
         $this->year = $year;
 
@@ -121,7 +121,7 @@ class Card implements EntityInterface
     }
 
 
-    public function setImageUrl(string $imageUrl): static
+    public function setImageUrl(string $imageUrl): Card
     {
         $this->imageUrl = $imageUrl;
 
