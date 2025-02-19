@@ -15,11 +15,20 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         api:
-            pattern: ^/api
+            pattern: ^/api(?!/admin)
             stateless: true
             json_login:
                 check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            provider: app_user_provider
+            jwt: ~
+        admin_login:
+            pattern: ^/api/admin
+            stateless: true
+            json_login:
+                check_path: /api/admin_login
+                success_handler: App\Security\AdminAuthenticatorSuccessHandler
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             provider: app_user_provider
             jwt: ~
@@ -38,8 +47,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/admin_login, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
