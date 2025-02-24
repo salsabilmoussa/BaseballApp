@@ -70,4 +70,12 @@ final class CardController extends AbstractController
 
         return $this->json('Card deleted successfully', Response::HTTP_OK);
     }
+
+    public function searchCards(Request $request, CardResolver $resolver): JsonResponse
+    {
+        $searchQuery = $request->get('search');
+        $cards = $resolver->searchCards($searchQuery);
+
+        return $this->json($cards, Response::HTTP_OK, [], ['groups' => 'API.GET']);
+    }
 }

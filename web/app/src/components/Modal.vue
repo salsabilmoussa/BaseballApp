@@ -3,7 +3,7 @@
         <div class="modal-content">
             <span class="close" @click="closeModal">&times;</span>
             <h3>{{ title }}</h3>
-            <form @submit.prevent="submitForm">
+            <form>
                 <div class="form-group">
                     <label for="name">Titre</label>
                     <input type="text" v-model="formData.name" required>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="button-container">
                     <button type="button" class="submit-btn" @click="closeModal">Annuler</button>
-                    <button type="submit" class="submit-btn">{{ submitButtonText }}</button>
+                    <button type="submit" class="submit-btn" @click.prevent="submitForm">{{ submitButtonText }}</button>
                 </div>
             </form>
 

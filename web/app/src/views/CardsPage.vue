@@ -8,7 +8,7 @@
                 <i class="fas fa-plus"></i> Ajouter</button>
             <div class="search-container">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" v-model="search" placeholder="Rechercher une carte.." class="search-input">
+            <input type="text" v-model="search" @input="searchCards" placeholder="Rechercher une carte.." class="search-input">
             </div>
             <table class="cards-table">
                 <thead>
@@ -71,6 +71,7 @@ export default {
     data() {
         return {
             cards: [],
+            search: '',
             currentPage: 1,
             itemsPerPage: 6,
             isModalOpen: false,
@@ -99,6 +100,17 @@ export default {
     },
 
     methods: {
+
+    async searchCards(){
+        try {
+                const response = await secondClient.get('/cards/search', {
+                    params: {search: this.search}
+                });
+                this.cards = response.data;
+            } catch (error) {
+                alert("Erreur lors de la recherche. Veuillez réessayer.");
+            }
+    },
 
     openAddCardModal() {
         this.modalTitle = 'Ajouter une carte';

@@ -3,6 +3,11 @@ api_public_getCards:
   path: /cards
   methods: GET
 
+api_public_searchCards:
+  controller: App\Controller\CardController::searchCards
+  path: /cards/search
+  methods: GET
+
 api_public_addCard:
   controller: App\Controller\CardController::addCard
   path: card/new

@@ -71,4 +71,21 @@ class CardManager extends AbstractManager
         $message = new BaseballCardMessage('card deleted');
         $this->messageBus->dispatch($message);
     }
+
+    public function searchCards(string $searchQuery): array
+    {
+        $qb = $this->em->createQueryBuilder()
+            ->select('c')
+            ->from(Card::class, 'c')
+            ->where('LOWER(c.name) LIKE :search')
+            ->orWhere('LOWER(c.player) LIKE :search')
+            ->orWhere('LOWER(c.team) LIKE :search');
+        if (is_numeric($searchQuery)) {
+            $qb->orWhere('c.year = :year')
+                ->setParameter('year', (int) $searchQuery);
+        }
+        $qb->setParameter('search', '%' . strtolower($searchQuery) . '%');
+
+        return $qb->getQuery()->getResult();
+    }
 }

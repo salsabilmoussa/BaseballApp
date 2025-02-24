@@ -39,4 +39,9 @@ class CardResolver
     {
         $this->manager->deleteCard($cardId);
     }
+
+    public function searchCards(string $searchQuery): array
+    {
+        return $this->manager->searchCards($searchQuery);
+    }
 }
