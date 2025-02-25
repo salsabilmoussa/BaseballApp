@@ -1,6 +1,6 @@
 api_public_register:
   controller: App\Controller\AuthController::register
-  path: /register
+  path: api/register
   methods: POST
 
 api_login_check:
@@ -11,3 +11,11 @@ api_admin_login:
   path: api/admin_login
   methods: POST
 
+api_get_users:
+  controller: App\Controller\AuthController::getUsers
+  path: api/users
+  methods: GET
+
+api_search_users:
+  controller: App\Controller\AuthController::searchUsers
+  path: api/search

@@ -27,4 +27,13 @@ class AuthResolver
 
         return $user;
     }
+
+    public function getUsers(): array{
+        return $this->manager->findAll();
+    }
+
+    public function searchUsers(string $searchQuery): array
+    {
+        return $this->manager->searchUsers($searchQuery);
+    }
 }

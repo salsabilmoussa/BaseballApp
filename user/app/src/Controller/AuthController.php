@@ -33,4 +33,17 @@ final class AuthController extends AbstractController
         );
     }
 
+    public function getUsers(AuthResolver $resolver): JsonResponse{
+        $users = $resolver->getUsers();
+        return $this->json($users, Response::HTTP_OK, [], ['groups' => 'API.GET']);
+    }
+
+    public function searchUsers(Request $request, AuthResolver $resolver): JsonResponse
+    {
+        $searchQuery = $request->get('search');
+        $users = $resolver->searchUsers($searchQuery);
+
+        return $this->json($users, Response::HTTP_OK, [], ['groups' => 'API.GET']);
+    }
+
 }

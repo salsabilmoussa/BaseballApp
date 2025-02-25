@@ -28,6 +28,10 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
     #[NotBlank]
     private string $email;
 
+    #[ORM\Column(length: 180)]
+    #[Serializer\Groups(['API.GET', 'API.POST', 'API.PATCH', 'API.PUT'])]
+    private string $name;
+
 
     #[ORM\Column]
     #[Serializer\Groups(['API.GET', 'API.POST', 'API.PATCH', 'API.PUT'])]
@@ -52,6 +56,18 @@ class User implements EntityInterface, UserInterface, PasswordAuthenticatedUserI
     public function setEmail(string $email): User
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): User
+    {
+        $this->name = $name;
 
         return $this;
     }
