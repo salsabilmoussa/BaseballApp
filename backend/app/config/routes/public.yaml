@@ -1,3 +1,25 @@
+api_public_register:
+  controller: App\Controller\AuthController::register
+  path: api/register
+  methods: POST
+
+api_login_check:
+  path: api/login_check
+  methods: POST
+
+api_admin_login:
+  path: api/admin_login
+  methods: POST
+
+api_get_users:
+  controller: App\Controller\AuthController::getUsers
+  path: api/users
+  methods: GET
+
+api_search_users:
+  controller: App\Controller\AuthController::searchUsers
+  path: api/users/search
+
 api_public_getCards:
   controller: App\Controller\CardController::getCards
   path: /cards
@@ -27,3 +49,4 @@ api_public_deleteCard:
   controller: App\Controller\CardController::deleteCard
   path: card/{id}
   methods: DELETE
+

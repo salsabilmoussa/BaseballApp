@@ -35,4 +35,4 @@ RUN composer dump-autoload --optimize
 # Expose port for Symfony
 EXPOSE 8001
 # Start Symfony app
-CMD ["php", "-S", "0.0.0.0:8001", "-t", "public"]
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]

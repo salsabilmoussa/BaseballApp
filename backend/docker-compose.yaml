@@ -1,0 +1,10 @@
+services:
+  baseballcards:
+    build: ./app
+    container_name: baseballcards
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/:/app
+    environment:
+      - KAFKA_BROKER=kafka:9092
