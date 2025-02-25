@@ -42,6 +42,7 @@ export default {
 name: 'SideBar',
 methods: {
     logout() {
+        localStorage.removeItem("token");
     },
 },
 };

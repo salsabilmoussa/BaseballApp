@@ -42,7 +42,7 @@
                 <span>Page {{ currentPage }} sur {{ totalPages }}</span>
                 <button @click="nextPage" :disabled="currentPage == totalPages">Suivant</button>
             </div>
-            <ModalComponent
+            <CardModal
                 :isOpen="isModalOpen"
                 :title="modalTitle"
                 :submitButtonText="modalSubmitButtonText"
@@ -57,16 +57,16 @@
 <script>
 import Header from '@/components/Header.vue';
 import SideBar from '@/components/SideBar.vue';
-import { secondClient } from '@/api';
-import ModalComponent from '@/components/Modal.vue';
+import CardModal from '@/components/CardModal.vue';
 import '@/assets/styles.css';
+import CardService from '@/service/card_service';
 
 export default {
     name: 'CardsPage',
     components: {
         Header,
         SideBar,
-        ModalComponent
+        CardModal
     },
     data() {
         return {
@@ -78,7 +78,6 @@ export default {
             modalTitle: '',
             modalSubmitButtonText: '',
             selectedCard: {
-                id: null,
                 name: '',
                 player: '',
                 team: '',
@@ -102,20 +101,13 @@ export default {
     methods: {
 
     async searchCards(){
-        try {
-                const response = await secondClient.get('/cards/search', {
-                    params: {search: this.search}
-                });
-                this.cards = response.data;
-            } catch (error) {
-                alert("Erreur lors de la recherche. Veuillez réessayer.");
-            }
+        this.cards = await CardService.searchCards(this.search);
     },
 
     openAddCardModal() {
         this.modalTitle = 'Ajouter une carte';
         this.modalSubmitButtonText = 'Ajouter';
-        this.selectedCard = { id: null, name: '', player: '', team: '', year: '', imageUrl: '' };
+        this.selectedCard = { name: '', player: '', team: '', year: '', imageUrl: '' };
         this.isModalOpen = true;
     },
 
@@ -128,10 +120,10 @@ export default {
 
     async handleModalSubmit(newData){
         if(this.selectedCard.id){
-            await this.editCard(this.selectedCard.id, newData);
+            this.cards = await CardService.editCard(this.selectedCard.id, newData);
         }
         else{
-            await this.addCard(newData);
+            this.cards = await CardService.addCard(newData);
         }
         this.closeModal();
     },
@@ -141,15 +133,6 @@ export default {
         this.isModalOpen = false;
     },
 
-
-    async getCards() {
-        try {
-                const response = await secondClient.get('/cards');
-                this.cards = response.data;
-            } catch (error) {
-                alert("Erreur lors de la récupération des cartes. Veuillez réessayer.");
-            }
-        },
     prevPage(){if (this.currentPage> 1)
         this.currentPage --;
     },
@@ -157,35 +140,14 @@ export default {
             if (this.currentPage < this.totalPages) this.currentPage++;
         },
 
-    async addCard(cardData) {
-        try {
-            await secondClient.post('/card/new', cardData);
-            this.getCards();
-        } catch (error) {
-            alert("Erreur lors de l'ajout de la carte. Veuillez réessayer.");
-        }
-    },
 
     async deleteCard(cardId) {
-        try {
-            await secondClient.delete(`/card/${cardId}`);
-            this.getCards();
-        } catch (error) {
-            alert("Erreur lors de la suppression de la carte. Veuillez réessayer.");
-        }
+        this.cards = await CardService.deleteCard(cardId);
     },
 
-    async editCard(cardId, updatedData) {
-        try {
-            await secondClient.put(`/card/${cardId}/edit`, updatedData);
-            this.getCards();
-        } catch (error) {
-            alert("Erreur lors de la mise à jour de la carte. Veuillez réessayer.");
-        }
-    },
 },
-mounted() {
-        this.getCards();
+    async mounted() {
+        this.cards = await CardService.getCards();
     },
 }
 </script>
