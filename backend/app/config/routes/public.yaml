@@ -3,8 +3,8 @@ api_public_register:
   path: api/register
   methods: POST
 
-api_login_check:
-  path: api/login_check
+api_login:
+  path: api/login
   methods: POST
 
 api_admin_login:
@@ -22,31 +22,31 @@ api_search_users:
 
 api_public_getCards:
   controller: App\Controller\CardController::getCards
-  path: /cards
+  path: api/cards
   methods: GET
 
 api_public_searchCards:
   controller: App\Controller\CardController::searchCards
-  path: /cards/search
+  path: api/cards/search
   methods: GET
 
 api_public_addCard:
   controller: App\Controller\CardController::addCard
-  path: card/new
+  path: api/card/new
   methods: POST
 
 api_public_showCard:
   controller: App\Controller\CardController::showCard
-  path: card/{id}
+  path: api/card/{id}
   methods: GET
 
 api_public_editCard:
   controller: App\Controller\CardController::editCard
-  path: card/{id}/edit
+  path: api/card/{id}/edit
   methods: PUT
 
 api_public_deleteCard:
   controller: App\Controller\CardController::deleteCard
-  path: card/{id}
+  path: api/card/{id}
   methods: DELETE
 

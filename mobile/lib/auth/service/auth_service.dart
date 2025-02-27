@@ -10,7 +10,7 @@ class AuthService extends ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     final response = await http.post(
-      Uri.parse('$_url/login_check'),
+      Uri.parse('$_url/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'username': email, 'password': password}),
     );

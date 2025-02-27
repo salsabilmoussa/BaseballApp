@@ -18,7 +18,7 @@
 </div>
 </template>
 <script>
-import {apiClient} from "@/api.js";
+import apiClient from "@/api.js";
 export default {
 name: 'LoginPage',
 data(){

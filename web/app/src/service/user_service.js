@@ -1,4 +1,4 @@
-import { apiClient } from '@/api';
+import apiClient  from '@/api';
 
 const UserService = {
     async getUsers() {
@@ -21,7 +21,7 @@ const UserService = {
 
     async searchUsers(search){
         try {
-                const response = await apiClient.get('/search', {
+                const response = await apiClient.get('users/search', {
                     params: {search: search}
                 });
                 return response.data;
