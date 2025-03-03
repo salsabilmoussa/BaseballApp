@@ -2,7 +2,7 @@
     <div v-if="isOpen" class="modal">
         <div class="modal-content">
             <span class="close" @click="closeModal">&times;</span>
-            <h3>{{ title }}</h3>
+            <h3 class="text-2xl text-gray-700 mb-6">{{ title }}</h3>
             <form>
                 <div class="form-group">
                     <label for="name">Titre</label>
@@ -34,7 +34,6 @@
     </div>
 </template>
 <script>
-import '@/assets/styles.css';
 
 export default ({
     name: 'ModalComponent',

@@ -1,175 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .search-container {
-    position: relative;
-    margin-left: 25%;
+    @apply relative ml-[25%];
 }
 
 .search-input {
-    height: 50px;
-    border-radius: 30px;
-    padding-left: 40px;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 40%;
+    @apply h-12 rounded-full pl-10 border-none shadow-lg w-2/5;
 }
 
 .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: #888;
-    font-size: 20px;
+    @apply absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 text-lg;
 }
 
 .add-card-btn {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 80%;
+    @apply px-5 py-2 bg-blue-500 text-white border-none rounded-md cursor-pointer text-base ml-[80%];
 }
+
 .main-content {
-    flex: 1;
-    margin-left: 20%;
-    margin-top: 5%;
-    width: 80%;
+    @apply flex-1 ml-[20%] mt-20 w-4/5;
 }
 
 .cards-table {
-    width: 85%;
-    border-collapse: collapse;
-    margin: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    border-radius: 10px;
+    @apply w-11/12 border-collapse m-4 text-center shadow-lg overflow-hidden rounded-xl;
 }
 
 .cards-table th {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: white;
+    @apply bg-gradient-to-r from-[#2c3e50] to-[#34495e] text-white;
 }
 
-.cards-table th, .cards-table td{
-    border-bottom: 1px solid #ddd;
+.cards-table th,
+.cards-table td {
+    @apply border-b border-gray-300;
 }
+
 .cards-table tbody tr:hover {
-    background-color: #f5f5f5;
-    transition: background-color 0.3s ease;
+    @apply bg-gray-100 transition-colors duration-300 ease-in-out;
 }
+
 .card-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
+    @apply w-20 h-20 rounded-md;
 }
 
-.pagination button{
-    cursor: pointer;
-    background-color: #3498db;
-    color: white;
+.pagination button {
+    @apply cursor-pointer bg-blue-500 text-white;
 }
 
-
-.icon-btn{
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 5px;
-    margin: 0 5px;
-}
-.icon-btn:hover{
-    transform:scale(1.1);
+.icon-btn {
+    @apply cursor-pointer text-xl p-2 mx-2;
 }
 
-.edit-btn{
-    color: #3498db
+.icon-btn:hover {
+    @apply transform scale-110;
 }
 
-.delete-btn{
-    color: #e74c3c;
+.edit-btn {
+    @apply text-blue-500;
 }
 
+.delete-btn {
+    @apply text-red-500;
+}
 
 .pagination button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
+    @apply bg-gray-400 cursor-not-allowed;
 }
 
 .pagination button:hover:not(:disabled) {
-    background-color: #2980b9;
+    @apply bg-blue-700;
 }
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center;
 }
 
 .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    position: relative;
+    @apply bg-white p-5 rounded-lg w-96 relative;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
+    @apply absolute top-3 right-3 text-2xl cursor-pointer;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    @apply mb-4;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+    @apply block mb-2;
 }
 
 .form-group input {
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    @apply w-11/12 p-2 border border-gray-300 rounded-md;
 }
 
 .submit-btn {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    @apply px-5 py-2 bg-blue-500 text-white border-none rounded-md cursor-pointer text-base transition-all duration-300 ease-in-out;
 }
+
 .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    @apply flex justify-center items-center gap-5;
 }
 
 .form-group select {
-    width: 95%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
+    @apply w-11/12 p-2 border border-gray-300 rounded-md bg-white text-base cursor-pointer;
 }
-
-

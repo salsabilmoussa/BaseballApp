@@ -1,6 +1,6 @@
 <template>
-    <div class="header">
-        <h3>Admin Dashboard</h3>
+    <div class="bg-[#2c3e50] text-white text-center fixed top-0 left-0 w-full h-14 flex items-center justify-center">
+        <h3 class="text-3xl font-semibold">Admin Dashboard</h3>
     </div>
 
 </template>
@@ -9,15 +9,3 @@ export default {
     name: 'HeaderComponent',
 }
 </script>
-
-<style scoped>
-.header {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-</style>

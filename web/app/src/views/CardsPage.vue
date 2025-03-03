@@ -3,7 +3,7 @@
         <Header />
         <SideBar />
         <main class="main-content">
-            <h3>Liste des cartes</h3>
+            <h3 class="text-2xl text-gray-700 mb-6">Liste des cartes</h3>
             <button @click="openAddCardModal"  class="add-card-btn">
                 <i class="fas fa-plus"></i> Ajouter</button>
             <div class="search-container">
@@ -58,7 +58,6 @@
 import Header from '@/components/Header.vue';
 import SideBar from '@/components/SideBar.vue';
 import CardModal from '@/components/CardModal.vue';
-import '@/assets/styles.css';
 import CardService from '@/service/card_service';
 
 export default {

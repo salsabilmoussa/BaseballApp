@@ -3,7 +3,7 @@
         <Header />
         <SideBar />
         <main class="main-content">
-            <h3>Liste des utilisateurs</h3>
+            <h3 class="text-2xl text-gray-700 mb-6">Liste des utilisateurs</h3>
             <button @click="openAddUserModal"  class="add-card-btn">
                 <i class="fas fa-plus"></i> Ajouter</button>
             <div class="search-container">
@@ -52,7 +52,6 @@
 <script>
 import Header from '@/components/Header.vue';
 import SideBar from '@/components/SideBar.vue';
-import '@/assets/styles.css';
 import UserService from '@/service/user_service';
 import UserModal from '@/components/UserModal.vue';
 
